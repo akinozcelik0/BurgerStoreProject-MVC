@@ -1,0 +1,103 @@
+﻿@model GalatiaBurger.Models.ViewModels.OrderViewModel
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="Order.Id" hidden /> 
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+                <div class="col-12 pb-2">
+                    <h2 class="text-info"> @(Model.Order.Id!=0? "Update":"Create") Orders</h2>
+                    <hr />
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Order.MenuId">Menu</label>
+                    <select asp-for="Order.MenuId" asp-items="@Model.MenuList" class="form-select">
+                        <option disabled selected>=-Select Menu-=</option>
+                    </select>
+                    <span asp-validation-for="Order.MenuId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Order.SideMealId">Side Meal</label>
+                    <select asp-for="Order.SideMealId" asp-items="@Model.SideMealList" class="form-select">
+                        <option disabled selected>=-Select Side Meal-=</option>
+                    </select>
+                    <span asp-validation-for="Order.SideMealId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Order.ExtraIngredientId">Extra</label>
+                    <select asp-for="Order.ExtraIngredientId" asp-items="@Model.ExtraList" class="form-select">
+                        <option disabled selected>=-Select Extra-=</option>
+                    </select>
+                    <span asp-validation-for="Order.ExtraIngredientId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Order.Size">Size</label>
+                    <select asp-for="Order.Size" class="form-select">
+                        <option disabled selected>=-Select Size-=</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                    <span asp-validation-for="Order.Size" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-12">
+                    <div class="col-2 text-primary"><h4>Count</h4></div>
+                    <div class="col-10"><input asp-for="Order.Count" class="form-control" /></div>
+                </div>
+
+
+                <div class="col-12">
+                    @if (Model.Order.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-info" style="width:150px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+                    }
+
+                    <a asp-controller="Order" asp-action="Index" class="btn btn-warning" style="width:150px">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ]
+    });
+    function ValidateInput() {
+        if (document.getElementById("uploadBox").value == "")
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please upload an Image!',
+
+            });
+            return false;
+        }
+        return true;
+    }
+    </script>
+
+}
+
+

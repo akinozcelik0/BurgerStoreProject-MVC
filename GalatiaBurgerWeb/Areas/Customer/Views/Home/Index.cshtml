@@ -1,0 +1,61 @@
+﻿@using GalatiaBurger.Models
+@using GalatiaBurger.Models.ViewModels
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    IEnumerable<Menu>? menus = ViewData["Menus"] as IEnumerable<Menu>;
+    IEnumerable<SideMeal>? sideMeals = ViewData["SideMeals"] as IEnumerable<SideMeal>;
+    IEnumerable<ExtraIngredient>? extras = ViewData["ExtraIngredients"] as IEnumerable<ExtraIngredient>;
+}
+
+
+<div class="row pb-3">
+    <h2 class="text-center">Burgers</h2>
+    @foreach (Menu menu in menus)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border: 1px solid #62C462; border-radius: 5px;">
+                    <div class="card">
+                        <img src="@menu.ImageUrl" class="card-img-top rounded" alt="Resim" />
+                        <div class="pl-1 ">
+                            <p class="card-title h-5 ms-3 text-light">@menu.Name</p>
+                        </div>
+                        <div class="pl-1 ms-3">
+                            <p>Price: <b>$@menu.Price.ToString("0.00")</b></p>
+                        </div>
+                    </div>
+                    <div>
+                        <a asp-action="MenuDetails" class="btn btn-primary form-control" asp-route-menuId="@menu.Id">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row pb-3">
+    <h2 class="text-center">Side Meals</h2>
+    @foreach (SideMeal sm in sideMeals)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border: 1px solid #62C462; border-radius: 5px;">
+                    <div class="card">
+                        <img src="@sm.ImageUrl" class="card-img-top rounded" alt="Resim" />
+                        <div class="pl-1">
+                            <p class="card-title h-5 text-light ms-3">@sm.Name</p>
+                        </div>
+                        <div class="pl-1 ms-3">
+                            <p>Price: <b>$@sm.Price.ToString("0.00")</b></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
