@@ -9,7 +9,8 @@ namespace GalatiaBurgerWeb.Areas.Customer.Controllers
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ShoppingCartVM ShoppingCartVM { get; set; }
+        //-------------Null ref.
+        public ShoppingCartVM? ShoppingCartVM { get; set; }
         public int OrderTotal { get; set; }
         public CartController(IUnitOfWork unitOfWork)
         {

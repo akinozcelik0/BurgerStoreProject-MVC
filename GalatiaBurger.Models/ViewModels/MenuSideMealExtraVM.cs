@@ -11,12 +11,5 @@ namespace GalatiaBurger.Models.ViewModels
         public IEnumerable<Menu> Menus { get; set; }
         public IEnumerable<ExtraIngredient> ExtraIngredients { get; set; }
         public IEnumerable<SideMeal> SideMeals { get; set; }
-
-
-
-
-
-
-
     }
 }

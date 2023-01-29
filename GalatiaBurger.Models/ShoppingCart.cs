@@ -33,8 +33,8 @@ namespace GalatiaBurger.Models
         [ValidateNever]
         public SideMeal? SideMeal { get; set; }
 
-
-        public string Size { get; set; }
+        //Null Ref
+        public string? Size { get; set; }
 
 
         [Range(1, 1000, ErrorMessage = "Please enter a value between 1 and 1000")]
