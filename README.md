@@ -2,6 +2,7 @@
 * A Burger Store Project with CRUD operations
 * Project uses N-tier Architecture and Repository Pattern 
 * Identity and User Roles will be added.
+* Shopping cart and order creation system will be changed.
 * Inspired by my hometown and Rome 2 Total War Theme for Galatians.
 
 
